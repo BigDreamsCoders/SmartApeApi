@@ -1,0 +1,30 @@
+{
+  "name": "index.js",
+  "version": "1.0.0",
+  "description": "API MAIN JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BigDreamsCoders/SmartApeApi.git"
+  },
+  "keywords": [
+    "RESTful"
+  ],
+  "author": "BigDreamCoders",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BigDreamsCoders/SmartApeApi/issues"
+  },
+  "homepage": "https://github.com/BigDreamsCoders/SmartApeApi#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.1.7"
+  }
+}
