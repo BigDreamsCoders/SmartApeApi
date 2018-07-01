@@ -15,11 +15,11 @@ module.exports = function(app) {
     .delete(todoList.delete_a_task);
 
   app.route('/preguntas')
-    .get(preguntasList.list_all_tasks)
-    .post(preguntasList.create_a_task);
+    .get(preguntasList.list_all_pregunta)
+    .post(preguntasList.create_a_pregunta);
 
   app.route('/preguntas/:preguntaId')
-    .get(preguntasList.read_a_task)
-    .put(preguntasList.update_a_task)
-    .delete(preguntasList.delete_a_task);
+    .get(preguntasList.read_a_pregunta)
+    .put(preguntasList.update_a_pregunta)
+    .delete(preguntasList.delete_a_pregunta);
 };

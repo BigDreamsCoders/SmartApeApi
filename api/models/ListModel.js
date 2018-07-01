@@ -35,4 +35,4 @@ var PreguntasSchema = new Schema({
 });
 
 module.exports = mongoose.model('Tasks', TaskSchema);
-module.exports = mongoose.model('Preguntas', PreguntasSchema);
+/*module.exports = mongoose.model('Preguntas', PreguntasSchema);*/
