@@ -3,15 +3,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var PreguntasSchema = new Schema({
-  texto: {type:String},
+  Premisa: {type:String},
   TipoDePregunta:{type: Number},
+  TextoPregunta: { type: String},
+  Correcto: { type: Boolean},
   Created_date: {
     type: Date,
     default: Date.now
-  },
-  Solucion:{
-    TextoPregunta: { type: String},
-    Correcto: { type: Boolean}
   }
 });
 
