@@ -22,15 +22,15 @@ var TaskSchema = new Schema({
 });
 
 var PreguntasSchema = new Schema({
-  texto: String,
-  TipoDePregunta: Number,
+  texto: {type:String},
+  TipoDePregunta:{type: Number},
   Created_date: {
     type: Date,
     default: Date.now
   },
   Soluciones:[{
-    TextoPregunta: String,
-    Correcto: Boolean
+    TextoPregunta: { type: String},
+    Correcto: { type: Boolean}
   }]
 });
 
