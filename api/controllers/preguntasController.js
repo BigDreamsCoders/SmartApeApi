@@ -2,7 +2,7 @@
 
 
 var mongoose = require('mongoose'),
-  Pregunta = mongoose.model('Preguntas');
+  Task = mongoose.model('Preguntas');
 
 exports.list_all_pregunta = function(req, res) {
   Pregunta.find({}, function(err, pregunta) {
