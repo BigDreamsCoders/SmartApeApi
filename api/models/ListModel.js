@@ -21,4 +21,18 @@ var TaskSchema = new Schema({
   }
 });
 
+var PreguntasSchema = new Schema({
+  texto: String,
+  TipoDePregunta: Number,
+  Created_date: {
+    type: Date,
+    default: Date.now
+  },
+  Soluciones:[{
+    TextoPregunta: String,
+    Correcto: Boolean
+  }]
+});
+
 module.exports = mongoose.model('Tasks', TaskSchema);
+module.exports = mongoose.model('Preguntas', PreguntasSchema);
