@@ -9,10 +9,10 @@ var PreguntasSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  Soluciones:[{
+  Solucion:{
     TextoPregunta: { type: String},
     Correcto: { type: Boolean}
-  }]
+  }
 });
 
 module.exports = mongoose.model('Preguntas', PreguntasSchema);
