@@ -4,8 +4,8 @@
 var mongoose = require('mongoose'),
   Pregunta = mongoose.model('Preguntas');
 
-exports.list_all_tasks = function(req, res) {
-  Task.find({}, function(err, task) {
+exports.list_all_pregunta = function(req, res) {
+  Pregunta.find({}, function(err, pregunta) {
     if (err)
       res.send(err);
     res.json(pregunta);
@@ -13,9 +13,9 @@ exports.list_all_tasks = function(req, res) {
 };
 
 
-exports.create_a_task = function(req, res) {
+exports.create_a_pregunta = function(req, res) {
   var new_pregunta = new Pregunta(req.body);
-  new_task.save(function(err, pregunta) {
+  new_pregunta.save(function(err, pregunta) {
     if (err)
       res.send(err);
     res.json(pregunta);
@@ -23,8 +23,8 @@ exports.create_a_task = function(req, res) {
 };
 
 
-exports.read_a_task = function(req, res) {
-  Task.findById(req.params.preguntaId, function(err, task) {
+exports.read_a_pregunta = function(req, res) {
+  Pregunta.findById(req.params.preguntaId, function(err, pregunta) {
     if (err)
       res.send(err);
     res.json(pregunta);
@@ -32,8 +32,8 @@ exports.read_a_task = function(req, res) {
 };
 
 
-exports.update_a_task = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params.preguntaId}, req.body, {new: true}, function(err, task) {
+exports.update_a_pregunta = function(req, res) {
+  Pregunta.findOneAndUpdate({_id: req.params.preguntaId}, req.body, {new: true}, function(err, pregunta) {
     if (err)
       res.send(err);
     res.json(pregunta);
@@ -41,9 +41,9 @@ exports.update_a_task = function(req, res) {
 };
 
 
-exports.delete_a_task = function(req, res) {
+exports.delete_a_pregunta = function(req, res) {
 
-  Task.remove({
+  Pregunta.remove({
     _id: req.params.preguntaId
   }, function(err, pregunta) {
     if (err)
