@@ -5,10 +5,10 @@ var Schema = mongoose.Schema;
 var PreguntasSchema = new Schema({
   Premisa: {type:String},
   TipoDePregunta:{type: Number},
-  Soluciones: [{
+  Soluciones: [
     RespuestaPregunta: { type: String},
     Correcto: { type: String}
-  }],
+  ],
   Created_date: {
     type: Date,
     default: Date.now
