@@ -7,28 +7,12 @@ var PreguntasSchema = new Schema({
   TipoDePregunta:{type: Number},
   Soluciones: [{
     RespuestaPregunta: { type: String},
-    Correcto: { type: String}
+    Correcto: { type: Boolean}
   }],
   Created_date: {
     type: Date,
     default: Date.now
   }
 });
-
-var customer = new CustomerModel({
-    Premisa: 'Ashish',
-    TipoDePregunta: 'Suthar',
-    company: 'asis',
-    Soluciones: [{
-      RespuestaPregunta: 'Suthar',
-      Correcto: '0'
-    },
-    {
-      RespuestaPregunta: 'Suthar',
-      Correcto: '1'
-    }
-  ]
-});
-
 
 module.exports = mongoose.model('Preguntas', PreguntasSchema);
