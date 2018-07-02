@@ -14,7 +14,7 @@ exports.list_all_pregunta = function(req, res) {
 
 
 exports.create_a_pregunta = function(req, res) {
-  var new_pregunta = new Pregunta(req.body);
+  var new_pregunta = new Task(req.body);
   new_pregunta.save(function(err, task) {
     if (err)
       res.send(err);
