@@ -7,12 +7,14 @@ var PreguntasSchema = new Schema({
   TipoDePregunta:{type: Number},
   Soluciones: [{
     RespuestaPregunta: { type: String},
-    Correcto: { type: Boolean}
+    Correcto: { type: String}
   }],
   Created_date: {
     type: Date,
     default: Date.now
   }
 });
+
+
 
 module.exports = mongoose.model('Preguntas', PreguntasSchema);
