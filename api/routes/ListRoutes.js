@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(app) {
   var preguntasList = require('../controllers/preguntasController');
-  var quizList = require('../controllers/preguntasController');
+  var quizList = require('../controllers/quizController');
   // Rutas
 
   app.route('/preguntas')
