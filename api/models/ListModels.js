@@ -2,6 +2,21 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var SocialSchema = new Schema({
+  Resueltos: {type:Number,
+              default: 0},
+  Aprobados: {type:Number,
+              default: 0},
+  Reprobados: {type:Number,
+              default: 0},
+  Vistos: {type:Number,
+              default: 0},
+  Guardados: {type:Number,
+              default: 0},
+  Favoritos: {type:Number,
+              default: 0}
+});
+
 var QuizSchema = new Schema({
   Categoria: {type: String},
   Titulo: {type:String},
@@ -10,31 +25,14 @@ var QuizSchema = new Schema({
   Descripcion: {type:String},
   Tiempo_limite: {type:String},
   Total_preguntas: {type:Number},
-  Elementos_sociales: {
-    Resueltos: {type:Number,
-                default: 0},
-    Aprobados: {type:Number,
-                default: 0},
-    Reprobados: {type:Number,
-                default: 0},
-    Vistos: {type:Number,
-                default: 0},
-    Guardados: {type:Number,
-                default: 0},
-    Favoritos: {type:Number,
-                default: 0}
-  },
+  Elementos_sociales: SocialSchema,
   Preguntas: [String],
   Fecha_creacion: {
     type: Date,
     default: Date.now
   }
 });
-/*
-var SocialSchema = new Schema({
 
-});
-*/
 var SolucionesSchema = new Schema({
   Correcto: { type: String},
   Respuesta_pregunta: { type: String}
