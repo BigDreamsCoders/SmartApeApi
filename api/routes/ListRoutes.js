@@ -25,4 +25,7 @@ module.exports = function(app) {
     .put(quizList.update_a_quiz)
     .delete(quizList.delete_a_quiz);
 
+  app.route('/quiz/social/:quizId')
+    .get(quizList.read_a_quiz_social);
+
 };

@@ -40,13 +40,10 @@ var mongoose = require('mongoose'),
   };
 
 
-  exports.delete_a_quiz = function(req, res) {
-
-    Task.remove({
-      _id: req.params.quizId
-    }, function(err, task) {
+  exports.read_a_quiz_social = function(req, res) {
+    Task.findById(req.params.quizId, function(err, task) {
       if (err)
         res.send(err);
-      res.json({ message: 'Task successfully deleted' });
+      res.json(task.Elementos_sociales);
     });
   };
