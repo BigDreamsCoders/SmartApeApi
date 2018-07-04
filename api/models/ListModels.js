@@ -17,7 +17,7 @@ var SocialSchema = new Schema({
   Favoritos: {type:Number,
               default: 0}
 });
-//Estructura principal
+//Estructura principal de quiz
 var QuizSchema = new Schema({
   Categoria: {type: String},
   Titulo: {type:String},
@@ -34,13 +34,15 @@ var QuizSchema = new Schema({
   }
 });
 
+//Esquemas usados para las preguntas
 var SolucionesSchema = new Schema({
   Correcto: { type: String},
   Respuesta_pregunta: { type: String}
 }) ;
-
+//Esquema principal de pregunta
 var PreguntasSchema = new Schema({
   Premisa: {type:String},
+  Quiz: {type:String},
   Tipo_pregunta:{type: Number},
   Collecion_soluciones: [SolucionesSchema],
   Fecha_creacion: {
@@ -49,5 +51,19 @@ var PreguntasSchema = new Schema({
   }
 });
 
+var UsuarioSchema = new Schema({
+  Correo: {type: String},
+  Password: {type: String},
+  Collecion_favoritos: [QuizSchema],
+  Collecion_guardados: [QuizSchema],
+  Collecion_quizzes: [QuizSchema],
+  Descripcion: {type:String},
+  Lugar: {type:String},
+  Fecha_nacimiento: {type:String},
+  Nombre: {type:String},
+  Apellidos: {type:String}
+});
+
 module.exports = mongoose.model('Preguntas', PreguntasSchema);
 module.exports = mongoose.model('Quiz', QuizSchema);
+module.exports = mongoose.model('Usuario', UsuarioSchema);

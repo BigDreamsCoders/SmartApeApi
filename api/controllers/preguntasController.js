@@ -11,7 +11,6 @@ exports.list_all_pregunta = function(req, res) {
   });
 };
 
-
 exports.create_a_pregunta = function(req, res) {
   var new_pregunta = new Task(req.body);
   new_pregunta.save(function(err, task) {
@@ -20,7 +19,6 @@ exports.create_a_pregunta = function(req, res) {
     res.json(task);
   });
 };
-
 
 exports.read_a_pregunta = function(req, res) {
   Task.findById(req.params.preguntaId, function(err, task) {
@@ -38,7 +36,6 @@ exports.read_a_soluciones = function(req, res) {
   });
 };
 
-
 exports.update_a_pregunta = function(req, res) {
   Task.findOneAndUpdate({_id: req.params.preguntaId}, req.body, {new: true}, function(err, task) {
     if (err)
@@ -46,7 +43,6 @@ exports.update_a_pregunta = function(req, res) {
     res.json(task);
   });
 };
-
 
 exports.delete_a_pregunta = function(req, res) {
 

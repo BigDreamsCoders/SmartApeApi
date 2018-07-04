@@ -12,7 +12,6 @@ var mongoose = require('mongoose'),
     });
   };
 
-
   exports.create_a_quiz = function(req, res) {
     var new_quiz = new Task(req.body);
     new_quiz.save(function(err, task) {
@@ -49,7 +48,6 @@ var mongoose = require('mongoose'),
       res.json(task);
     });
   };
-
 
   exports.read_a_social = function(req, res) {
     Task.findById(req.params.quizId, function(err, task) {
