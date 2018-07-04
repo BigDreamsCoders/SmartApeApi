@@ -2,23 +2,20 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
-var TaskSchema = new Schema({
-  name: {
-    type: String,
-    required: 'Kindly enter the name of the task'
-  },
-  Created_date: {
+var Quiz = new Schema({
+  Categoria: {type: String},
+  Titulo: {type:String},
+  Creador: {type:String},
+  Estado: {type:Number},
+  Descripcion: {type:String},
+  Tiempo_limite: {type:String},
+  Total_preguntas: {type:Number},
+  Preguntas: [String],
+  Fecha_creacion: {
     type: Date,
     default: Date.now
-  },
-  status: {
-    type: [{
-      type: String,
-      enum: ['pending', 'ongoing', 'completed']
-    }],
-    default: ['pending']
   }
+
 });
 
 var Soluciones = new Schema({
@@ -30,11 +27,11 @@ var PreguntasSchema = new Schema({
   Premisa: {type:String},
   TipoDePregunta:{type: Number},
   CollecionSoluciones: [Soluciones],
-  Created_date: {
+  Fecha_creacion: {
     type: Date,
     default: Date.now
   }
 });
 
-module.exports = mongoose.model('Tasks', TaskSchema);
 module.exports = mongoose.model('Preguntas', PreguntasSchema);
+module.exports = mongoose.model('Quiz', Quiz);
