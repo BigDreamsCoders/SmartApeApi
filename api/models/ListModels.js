@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+//Esquemas usuados para los quiz
 var SocialSchema = new Schema({
   Resueltos: {type:Number,
               default: 0},
@@ -16,7 +17,7 @@ var SocialSchema = new Schema({
   Favoritos: {type:Number,
               default: 0}
 });
-
+//Estructura principal
 var QuizSchema = new Schema({
   Categoria: {type: String},
   Titulo: {type:String},
@@ -25,7 +26,7 @@ var QuizSchema = new Schema({
   Descripcion: {type:String},
   Tiempo_limite: {type:String},
   Total_preguntas: {type:Number},
-  Elementos_sociales: SocialSchema,
+  Elementos_sociales: {type:SocialSchema},
   Preguntas: [String],
   Fecha_creacion: {
     type: Date,
