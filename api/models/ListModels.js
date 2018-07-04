@@ -57,11 +57,15 @@ var UsuarioSchema = new Schema({
   Collecion_favoritos: [QuizSchema],
   Collecion_guardados: [QuizSchema],
   Collecion_quizzes: [QuizSchema],
-  Descripcion: {type:String},
-  Lugar: {type:String},
-  Fecha_nacimiento: {type:String},
-  Nombre: {type:String},
-  Apellidos: {type:String}
+  Descripcion: {type: String},
+  Lugar: {type: String},
+  Fecha_nacimiento: {type: String},
+  Nombre: {type: String},
+  Apellidos: {type: String},
+  Fecha_creacion: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('Preguntas', PreguntasSchema);
