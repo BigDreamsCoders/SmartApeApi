@@ -40,7 +40,7 @@ var mongoose = require('mongoose'),
   };
 
 
-  exports.read_a_quiz_social = function(req, res) {
+  exports.read_a_social = function(req, res) {
     Task.findById(req.params.quizId, function(err, task) {
       if (err)
         res.send(err);

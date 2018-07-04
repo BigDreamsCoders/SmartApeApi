@@ -2,8 +2,8 @@
 module.exports = function(app) {
   var preguntasList = require('../controllers/preguntasController');
   var quizList = require('../controllers/quizController');
-  // Rutas
 
+  // Rutas
   app.route('/preguntas')
     .get(preguntasList.list_all_pregunta)
     .post(preguntasList.create_a_pregunta);
@@ -26,6 +26,6 @@ module.exports = function(app) {
     .delete(quizList.delete_a_quiz);
 
   app.route('/quiz/social/:quizId')
-    .get(quizList.read_a_quiz_social);
+    .get(quizList.read_a_social);
 
 };
