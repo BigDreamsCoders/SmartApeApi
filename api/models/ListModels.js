@@ -10,7 +10,7 @@ var QuizSchema = new Schema({
   Descripcion: {type:String},
   Tiempo_limite: {type:String},
   Total_preguntas: {type:Number},
-  Elementos_sociales: {type: Schema.SocialSchema},
+  Elementos_sociales: {type:SocialSchema},
   Preguntas: [String],
   Fecha_creacion: {
     type: Date,
@@ -30,7 +30,7 @@ var SocialSchema = new Schema({
   Guardados: {type:Number,
               default: 0},
   Favoritos: {type:Number,
-              default: 0},
+              default: 0}
 });
 
 var SolucionesSchema = new Schema({
