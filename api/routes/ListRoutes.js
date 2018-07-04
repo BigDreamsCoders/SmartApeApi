@@ -14,7 +14,7 @@ module.exports = function(app) {
     .delete(preguntasList.delete_a_pregunta);
 
   app.route('/preguntas/soluciones/:preguntaId')
-    .get(preguntasList.read_a_soluciones)
+    .get(preguntasList.read_a_soluciones);
 
   app.route('/quiz')
     .get(preguntasList.list_all_quiz)
