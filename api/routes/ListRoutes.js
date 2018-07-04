@@ -31,11 +31,11 @@ module.exports = function(app) {
 
     // Rutas de usuario
     app.route('/usuario')
-      .get(usuarioList.list_all_pregunta)
-      .post(usuarioList.create_a_pregunta);
+      .get(usuarioList.list_all_usuario)
+      .post(usuarioList.create_a_usuario);
 
     app.route('/usuario/:usuarioId')
-      .get(usuarioList.read_a_pregunta)
-      .put(usuarioList.update_a_pregunta)
-      .delete(usuarioList.delete_a_pregunta);
+      .get(usuarioList.read_a_usuario)
+      .put(usuarioList.update_a_usuario)
+      .delete(usuarioList.delete_a_usuario);
 };
