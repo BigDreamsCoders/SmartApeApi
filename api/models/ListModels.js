@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Quiz = new Schema({
+var QuizSchema = new Schema({
   Categoria: {type: String},
   Titulo: {type:String},
   Creador: {type:String},
@@ -11,11 +11,22 @@ var Quiz = new Schema({
   Tiempo_limite: {type:String},
   Total_preguntas: {type:Number},
   Preguntas: [String],
+  Resueltos: {type:Number,
+              default: 0},
+  Aprobados: {type:Number,
+              default: 0},
+  Reprobados: {type:Number,
+              default: 0},
+  Vistos: {type:Number,
+              default: 0},
+  Guardados: {type:Number,
+              default: 0},
+  Favoritos: {type:Number,
+              default: 0},
   Fecha_creacion: {
     type: Date,
     default: Date.now
   }
-
 });
 
 var Soluciones = new Schema({
@@ -34,4 +45,4 @@ var PreguntasSchema = new Schema({
 });
 
 module.exports = mongoose.model('Preguntas', PreguntasSchema);
-module.exports = mongoose.model('Quiz', Quiz);
+module.exports = mongoose.model('Quiz', QuizSchema);
