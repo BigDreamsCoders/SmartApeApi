@@ -17,12 +17,12 @@ module.exports = function(app) {
     .get(preguntasList.read_a_soluciones);
 
   app.route('/quiz')
-    .get(preguntasList.list_all_quiz)
-    .post(preguntasList.create_a_quiz);
+    .get(quizList.list_all_quiz)
+    .post(quizList.create_a_quiz);
 
   app.route('/quiz/:quizId')
-    .get(preguntasList.read_a_quiz)
-    .put(preguntasList.update_a_quiz)
-    .delete(preguntasList.delete_a_quiz);
+    .get(quizList.read_a_quiz)
+    .put(quizList.update_a_quiz)
+    .delete(quizList.delete_a_quiz);
 
 };
