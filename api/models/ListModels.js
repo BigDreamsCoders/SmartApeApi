@@ -10,7 +10,15 @@ var QuizSchema = new Schema({
   Descripcion: {type:String},
   Tiempo_limite: {type:String},
   Total_preguntas: {type:Number},
+  Elementos_sociales: {type:SocialSchema},
   Preguntas: [String],
+  Fecha_creacion: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+var SocialSchema = new Schema({
   Resueltos: {type:Number,
               default: 0},
   Aprobados: {type:Number,
@@ -23,21 +31,17 @@ var QuizSchema = new Schema({
               default: 0},
   Favoritos: {type:Number,
               default: 0},
-  Fecha_creacion: {
-    type: Date,
-    default: Date.now
-  }
 });
 
-var Soluciones = new Schema({
+var SolucionesSchema = new Schema({
   Correcto: { type: String},
-  RespuestaPregunta: { type: String}
+  Respuesta_pregunta: { type: String}
 }) ;
 
 var PreguntasSchema = new Schema({
   Premisa: {type:String},
-  TipoDePregunta:{type: Number},
-  CollecionSoluciones: [Soluciones],
+  Tipo_pregunta:{type: Number},
+  Collecion_soluciones: [SolucionesSchema],
   Fecha_creacion: {
     type: Date,
     default: Date.now

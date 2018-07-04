@@ -34,7 +34,7 @@ exports.read_a_soluciones = function(req, res) {
   Task.findById(req.params.preguntaId, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task.CollecionSoluciones);
+    res.json(task.Collecion_soluciones);
   });
 };
 
