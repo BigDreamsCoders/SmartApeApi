@@ -2,13 +2,16 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
+var Soluciones = new Schema({
+  Correcto: { type: String},
+  RespuestaPregunta: { type: String}
+}) ;
+
 var PreguntasSchema = new Schema({
   Premisa: {type:String},
   TipoDePregunta:{type: Number},
-  Soluciones: [new Schema(
-    RespuestaPregunta: { type: String},
-    Correcto: { type: String})
-  ],
+  CollecionSoluciones: [Soluciones],
   Created_date: {
     type: Date,
     default: Date.now
