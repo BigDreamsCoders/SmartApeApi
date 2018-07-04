@@ -20,6 +20,7 @@ module.exports = function(app) {
 
   app.route('/preguntas/:preguntaId')
     .get(preguntasList.read_a_pregunta)
+    .get(preguntasList.read_a_soluciones)
     .put(preguntasList.update_a_pregunta)
     .delete(preguntasList.delete_a_pregunta);
 };

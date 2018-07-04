@@ -31,6 +31,14 @@ exports.read_a_pregunta = function(req, res) {
   });
 };
 
+exports.read_a_soluciones = function(req, res) {
+  Task.findById(req.params.preguntaId, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task.CollecionSoluciones);
+  });
+};
+
 
 exports.update_a_pregunta = function(req, res) {
   Task.findOneAndUpdate({_id: req.params.preguntaId}, req.body, {new: true}, function(err, task) {
