@@ -31,6 +31,17 @@ var mongoose = require('mongoose'),
     });
   };
 
+  exports.delete_a_quiz = function(req, res) {
+
+    Task.remove({
+      _id: req.params.quizId
+    }, function(err, task) {
+      if (err)
+        res.send(err);
+      res.json({ message: 'Task successfully deleted' });
+    });
+  };
+
   exports.update_a_quiz = function(req, res) {
     Task.findOneAndUpdate({_id: req.params.quizId}, req.body, {new: true}, function(err, task) {
       if (err)
