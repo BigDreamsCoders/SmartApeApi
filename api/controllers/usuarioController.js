@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
   config = require('../secret'),
   Task = mongoose.model('Usuario');
 
+// Retorna todos los usuarios
 exports.list_all_usuario = function(req, res) {
   Task.find({}, function(err, task) {
     if (err)
@@ -14,6 +15,7 @@ exports.list_all_usuario = function(req, res) {
   });
 };
 
+// Crea un usuario
 exports.create_a_usuario = function(req, res) {
   req.body.Password = bcrypt.hashSync(req.body.Password, 8);
   var new_usuario = new Task(req.body);
@@ -30,14 +32,6 @@ exports.read_a_usuario_me = function(req, res, next) {
     if (err) return res.status(500).send("There was a problem finding the user.");
     if (!task) return res.status(404).send("No user found.");
     res.status(200).send(task);
-  });
-};
-
-exports.update_a_usuario_me = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params.usuarioId}, req.body, {new: true}, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
   });
 };
 
@@ -68,7 +62,19 @@ exports.delete_a_usuario = function(req, res) {
     res.json({ message: 'Task successfully deleted' });
   });
 };
-
+//
+exports.add_favorito = function(req, res, next) {
+  Task.findByIdAndUpdate(req.userId, { password: 0 }, function (err, task) {
+    if (err) return res.status(500).send("There was a problem finding the user.");
+    if (!task) return res.status(404).send("No user found.");
+    {$push: {items: item}},
+    {safe: true, upsert: true},
+    function(err, model) {
+        console.log(err);
+    }
+    res.status(200).send(task);
+  });
+};
 //Obtener token por medio del login
 exports.get_login_token = function(req, res) {
   Task.findOne({
