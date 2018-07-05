@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
   jwt    = require('jsonwebtoken'),
   bcrypt = require('bcryptjs'),
-  config = require('../config'),
+  config = require('./api/config'),
   Task = mongoose.model('Usuario');
 
 
