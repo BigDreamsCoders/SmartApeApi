@@ -2,8 +2,11 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
+  morgan = require('morgan'),
   Task = require('./api/models/ListModels'), //created model loading here
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  jwt    = require('jsonwebtoken');
+
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
@@ -15,6 +18,7 @@ app.use(bodyParser.json());
 
 
 var routes = require('./api/routes/ListRoutes'); //importing route
+
 routes(app); //register the route
 
 
