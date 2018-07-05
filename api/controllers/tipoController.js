@@ -19,3 +19,14 @@ var mongoose = require('mongoose'),
       res.json(task);
     });
   };
+
+  exports.delete_a_tipo = function(req, res) {
+
+    Task.remove({
+      _id: req.params.tipoId
+    }, function(err, task) {
+      if (err)
+        res.send(err);
+      res.json({ message: 'Task successfully deleted' });
+    });
+  };
