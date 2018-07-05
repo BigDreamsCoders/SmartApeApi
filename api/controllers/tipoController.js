@@ -32,9 +32,9 @@ var mongoose = require('mongoose'),
   };
 
   exports.read_a_tipo = function(req, res) {
-    Task.find(req.params.Lenguaje, function(err, task) {
+      Task.find({}, { "Lenguaje": req.params.Lenguaje }).exec(function(err, task) {
       if (err)
         res.send(err);
-      res.json(task);
+      res.json(task.Titulo);
     });
   };
