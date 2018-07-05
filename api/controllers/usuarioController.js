@@ -35,6 +35,14 @@ exports.read_a_usuario_me = function(req, res, next) {
   });
 };
 
+exports.update_a_usuario_me = function(req, res, next) {
+    Task.findOneAndUpdate({_id: req.userId}, req.body, {new: true}, function(err, task) {
+      if (err)
+        res.send(err);
+      res.json(task);
+    });
+};
+
 //Elementos que se editan con el id
 exports.read_a_usuario = function(req, res) {
   Task.findById(req.params.usuarioId, function(err, task) {
