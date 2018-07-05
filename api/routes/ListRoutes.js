@@ -3,6 +3,7 @@ module.exports = function(app) {
   var preguntasList = require('../controllers/preguntasController');
   var quizList = require('../controllers/quizController');
   var usuarioList = require('../controllers/usuarioController');
+  var VerifyToken = require('./VerifyToken');
 
   // Rutas de preguntas
     app.route('/preguntas')
@@ -34,10 +35,10 @@ module.exports = function(app) {
       .get(usuarioList.list_all_usuario)
       .post(usuarioList.create_a_usuario);
 
-    app.route('/usuario/:usuarioId')
-      .get(usuarioList.read_a_usuario)
-      .put(usuarioList.update_a_usuario)
-      .delete(usuarioList.delete_a_usuario);
+    app.route('/usuario/especifico')
+      .get(VerifyToken, usuarioList.read_a_usuario)
+      .put(VerifyToken, usuarioList.update_a_usuario)
+      .delete(VerifyToken, usuarioList.delete_a_usuario);
 
     app.route('/usuario/login')
       .post(usuarioList.get_login_token);

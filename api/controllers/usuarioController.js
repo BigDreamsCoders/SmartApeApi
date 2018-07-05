@@ -6,7 +6,6 @@ var mongoose = require('mongoose'),
   config = require('../secret'),
   Task = mongoose.model('Usuario');
 
-
 exports.list_all_usuario = function(req, res) {
   Task.find({}, function(err, task) {
     if (err)
@@ -25,16 +24,12 @@ exports.create_a_usuario = function(req, res) {
   });
 };
 
-exports.read_a_usuario = function(req, res) {
+
+exports.read_a_usuario = function(req, res, next) {
   Task.findById(req.params.usuarioId, function(err, task) {
+
     if (err)
       res.send(err);
-    var token = req.headers['x-access-token'];
-      if (!token)
-        return res.status(403).send({ auth: false, message: 'No token provided.' });
-    jwt.verify(token, config.secret, function(err, decoded) {
-      if (err)
-      return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
     res.json(task);
   });
 };
