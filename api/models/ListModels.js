@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 // Esquema general de los tipos de quizz
 var tipoSchema = new Schema({
+  Lenguaje: {type:String},
   Titulo:[{type:String, lowercase: true, trim: true}]
 })
 
