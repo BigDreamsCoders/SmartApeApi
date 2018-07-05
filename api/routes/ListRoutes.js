@@ -3,7 +3,7 @@ module.exports = function(app) {
   var preguntasList = require('../controllers/preguntasController');
   var quizList = require('../controllers/quizController');
   var usuarioList = require('../controllers/usuarioController');
-  var VerifyToken = require('VerifyToken');
+  var VerifyToken = require('verificarToken');
 
   // Rutas de preguntas
     app.route('/preguntas')
