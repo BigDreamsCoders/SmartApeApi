@@ -68,4 +68,6 @@ module.exports = function(app) {
   app.route('/tipo')
     .get(tipoList.list_all_tipo)
     .post(tipoList.create_a_tipo);
+  app.route('/tipo/:tipoId')
+    .delete(tipoList.delete_a_tipo);
 };
