@@ -1,17 +1,16 @@
 var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
+  bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   morgan = require('morgan'),
-  Task = require('./api/models/ListModels'), //created model loading here
-  bodyParser = require('body-parser'),
-  jwt    = require('jsonwebtoken');
+  Task = require('./api/models/ListModels');
 
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb+srv://smartape:holaalex7.@cluster0-l1zkx.mongodb.net/test?');
-
+app.set('superSecret', config.secret);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

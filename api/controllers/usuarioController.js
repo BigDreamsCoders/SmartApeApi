@@ -1,7 +1,11 @@
 'use strict';
 
 var mongoose = require('mongoose'),
+  jwt    = require('jsonwebtoken'),
+  bcrypt = require('bcryptjs'),
+  config = require('../config'),
   Task = mongoose.model('Usuario');
+
 
 exports.list_all_usuario = function(req, res) {
   Task.find({}, function(err, task) {
@@ -12,6 +16,7 @@ exports.list_all_usuario = function(req, res) {
 };
 
 exports.create_a_usuario = function(req, res) {
+  req.body.Password = bcrypt.hashSync(req.body.Password, 8);
   var new_usuario = new Task(req.body);
   new_usuario.save(function(err, task) {
     if (err)
@@ -48,6 +53,7 @@ exports.delete_a_usuario = function(req, res) {
 };
 
 exports.get_login_token = function(req, res) {
+  var hashedPassword = bcrypt.hashSync(req.body.Password, 8);
   Task.findOne({
     Correo: req.body.Correo
   }, function(err, task) {
@@ -66,11 +72,9 @@ exports.get_login_token = function(req, res) {
         // if user is found and password is right
         // create a token with only our given payload
     // we don't want to pass in the entire user since that has the password
-    const payload = {
-      admin: Task.Admin
-    };
-        var token = jwt.sign(payload, app.get('superSecret'), {
-          expiresInMinutes: 1440 // expires in 24 hours
+
+        var token = jwt.sign({ id: Task._id }, config.secret, {
+          expiresIn: 86400  // expires in 24 hours
         });
 
         // return the information including token as JSON
