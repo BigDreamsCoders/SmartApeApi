@@ -1,22 +1,23 @@
 'use strict';
 module.exports = function(app) {
-  var preguntasList = require('../controllers/preguntasController');
+  var preguntaList = require('../controllers/preguntasController');
   var quizList = require('../controllers/quizController');
   var usuarioList = require('../controllers/usuarioController');
+  var tipoList = require('../controllers/tipoController')
   var VerifyToken = require('./verificarToken');
   /*- PREGUNTAS -*/
   // Rutas de general
   app.route('/preguntas')
-    .get(preguntasList.list_all_pregunta)
-    .post(preguntasList.create_a_pregunta);
+    .get(preguntaList.list_all_pregunta)
+    .post(preguntaList.create_a_pregunta);
   // Rutas para realizar modificaciones de una pregunta
   app.route('/preguntas/:preguntaId')
-    .get(preguntasList.read_a_pregunta)
-    .put(preguntasList.update_a_pregunta)
-    .delete(preguntasList.delete_a_pregunta);
+    .get(preguntaList.read_a_pregunta)
+    .put(preguntaList.update_a_pregunta)
+    .delete(preguntaList.delete_a_pregunta);
 
   app.route('/preguntas/soluciones/:preguntaId')
-    .get(preguntasList.read_a_soluciones);
+    .get(preguntaList.read_a_soluciones);
   /*- QUIZ -*/
   // Rutas de quiz
   app.route('/quiz')
@@ -62,4 +63,9 @@ module.exports = function(app) {
   // Ruta para obtener el token
   app.route('/usuario/login')
     .post(usuarioList.get_login_token);
+
+  /*- TIPOS -*/
+  app.route('/tipo')
+    .get(tipoList.list_all_tipo)
+    .post(tipoList.create_a_tipo);
 };

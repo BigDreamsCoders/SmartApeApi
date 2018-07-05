@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-  Task = mongoose.model('Preguntas');
+  Task = mongoose.model('Pregunta');
 
 exports.list_all_pregunta = function(req, res) {
   Task.find({}, function(err, task) {

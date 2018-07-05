@@ -2,6 +2,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// Esquema general de los tipos de quizz
+var tipoSchema = new Schema({
+  Titulo:[{type:String, lowercase: true, trim: true}]
+})
+
 //Esquemas usuados para los quiz
 var SocialSchema = new Schema({
   Resueltos: {type:Number,
@@ -40,7 +45,7 @@ var SolucionesSchema = new Schema({
   Respuesta_pregunta: { type: String}
 }) ;
 //Esquema principal de pregunta
-var PreguntasSchema = new Schema({
+var PreguntaSchema = new Schema({
   Premisa: {type:String},
   Quiz: {type:String},
   Tipo_pregunta:{type: Number},
@@ -70,6 +75,7 @@ var UsuarioSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Preguntas', PreguntasSchema);
+module.exports = mongoose.model('Tipo', tipoSchema);
+module.exports = mongoose.model('Pregunta', PreguntaSchema);
 module.exports = mongoose.model('Quiz', QuizSchema);
 module.exports = mongoose.model('Usuario', UsuarioSchema);
