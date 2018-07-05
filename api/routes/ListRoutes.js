@@ -35,7 +35,12 @@ module.exports = function(app) {
       .get(usuarioList.list_all_usuario)
       .post(usuarioList.create_a_usuario);
 
-    app.route('/usuario/especifico')
+    app.route('/usuario/me')
+      .get(VerifyToken, usuarioList.read_a_usuario_me)
+      .put(VerifyToken, usuarioList.update_a_usuario_me)
+
+
+    app.route('/usuario/:usuarioId')
       .get(VerifyToken, usuarioList.read_a_usuario)
       .put(VerifyToken, usuarioList.update_a_usuario)
       .delete(VerifyToken, usuarioList.delete_a_usuario);

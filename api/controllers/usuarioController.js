@@ -24,12 +24,29 @@ exports.create_a_usuario = function(req, res) {
   });
 };
 
-
-exports.read_a_usuario = function(req, res, next) {
+// Request referentes a token
+exports.read_a_usuario_me = function(req, res, next) {
   Task.findById(req.userId, { password: 0 }, function (err, task) {
     if (err) return res.status(500).send("There was a problem finding the user.");
     if (!task) return res.status(404).send("No user found.");
     res.status(200).send(task);
+  });
+};
+
+exports.update_a_usuario_me = function(req, res) {
+  Task.findOneAndUpdate({_id: req.params.usuarioId}, req.body, {new: true}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+//Elementos que se editan con el id
+exports.read_a_usuario = function(req, res) {
+  Task.findById(req.params.usuarioId, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
   });
 };
 
@@ -52,6 +69,7 @@ exports.delete_a_usuario = function(req, res) {
   });
 };
 
+//Obtener token por medio del login
 exports.get_login_token = function(req, res) {
   Task.findOne({
     Correo: req.body.Correo
@@ -65,19 +83,17 @@ exports.get_login_token = function(req, res) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (task) {
 
-      // check if password matches
+      // Verficia si la contra coincide
       if (!passwordIsValid) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
 
-        // if user is found and password is right
-        // create a token with only our given payload
-        // we don't want to pass in the entire user since that has the password
+        // Se crea un token con el id del usuario
         var token = jwt.sign({ id: task._id }, config.secret, {
           expiresIn: 86400  // expires in 24 hours
         });
 
-        // return the information including token as JSON
+        // retorna la informacion del token
         res.json({
           success: true,
           message: 'Enjoy your token!',
