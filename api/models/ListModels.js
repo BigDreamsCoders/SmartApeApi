@@ -52,6 +52,7 @@ var PreguntasSchema = new Schema({
 });
 
 var UsuarioSchema = new Schema({
+  Admin: {type: Boolean},
   Correo: {type: String},
   Password: {type: String},
   Collecion_favoritos: [QuizSchema],

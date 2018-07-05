@@ -38,4 +38,7 @@ module.exports = function(app) {
       .get(usuarioList.read_a_usuario)
       .put(usuarioList.update_a_usuario)
       .delete(usuarioList.delete_a_usuario);
+
+    app.route('/usuario/login')
+      .post(usuarioList.get_login_token);
 };
