@@ -53,14 +53,14 @@ exports.delete_a_usuario = function(req, res) {
 };
 
 exports.get_login_token = function(req, res) {
-
+  var hashedPassword = bcrypt.hashSync(req.body.Password, 8);
   Task.findOne({
     Correo: req.body.Correo
   }, function(err, task) {
 
     if (err) throw err;
 
-    var hashedPassword = bcrypt.hashSync(req.body.Password, 8);
+
     if (!task) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (task) {
@@ -74,7 +74,7 @@ exports.get_login_token = function(req, res) {
         // create a token with only our given payload
     // we don't want to pass in the entire user since that has the password
 
-        var token = jwt.sign({ id: Task._id }, config.secret, {
+        var token = jwt.sign({ id: task._id }, config.secret, {
           expiresIn: 86400  // expires in 24 hours
         });
 
