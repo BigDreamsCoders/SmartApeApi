@@ -32,7 +32,7 @@ var mongoose = require('mongoose'),
   };
 
   exports.read_a_tipo = function(req, res) {
-      Task.find({}, { "Lenguaje": req.params.tipoIdioma }).exec(function(err, task) {
+      Task.findOne({ Lenguaje: req.params.tipoIdioma}, function (err, task) {
       if (err)
         res.send(err);
       res.json(task.Titulo);
