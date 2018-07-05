@@ -29,6 +29,12 @@ exports.read_a_usuario = function(req, res) {
   Task.findById(req.params.usuarioId, function(err, task) {
     if (err)
       res.send(err);
+    var token = req.headers['x-access-token'];
+      if (!token)
+        return res.status(403).send({ auth: false, message: 'No token provided.' });
+    jwt.verify(token, config.secret, function(err, decoded) {
+      if (err)
+      return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
     res.json(task);
   });
 };
@@ -72,8 +78,7 @@ exports.get_login_token = function(req, res) {
 
         // if user is found and password is right
         // create a token with only our given payload
-    // we don't want to pass in the entire user since that has the password
-
+        // we don't want to pass in the entire user since that has the password
         var token = jwt.sign({ id: task._id }, config.secret, {
           expiresIn: 86400  // expires in 24 hours
         });
