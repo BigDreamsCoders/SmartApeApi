@@ -26,9 +26,9 @@ exports.create_a_usuario = function(req, res) {
 
 
 exports.read_a_usuario = function(req, res, next) {
-  Task.findById(req.userId, { password: 0 }, function (err, user) {
+  Task.findById(req.userId, { password: 0 }, function (err, task) {
     if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!user) return res.status(404).send("No user found.");
+    if (!task) return res.status(404).send("No user found.");
     res.status(200).send(task);
   });
 };
