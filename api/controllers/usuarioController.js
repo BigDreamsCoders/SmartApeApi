@@ -50,13 +50,13 @@ exports.delete_a_usuario = function(req, res) {
 exports.get_login_token = function(req, res) {
   Task.findOne({
     Correo: req.body.Correo
-  }, function(err, user) {
+  }, function(err, task) {
 
     if (err) throw err;
 
-    if (!user) {
+    if (!task) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
-    } else if (user) {
+    } else if (task) {
 
       // check if password matches
       if (Task.Password != req.body.Password) {
