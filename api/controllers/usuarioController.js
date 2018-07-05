@@ -65,7 +65,7 @@ exports.get_login_token = function(req, res) {
     } else if (task) {
 
       // check if password matches
-      if (Task.Password != req.body.Password) {
+      if (Task.Password != hashedPassword) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
 
