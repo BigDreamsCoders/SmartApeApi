@@ -60,6 +60,7 @@ exports.get_login_token = function(req, res) {
 
     if (err) throw err;
 
+    var passwordIsValid = bcrypt.compareSync(req.body.Password, task.Password);
 
     if (!task) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
