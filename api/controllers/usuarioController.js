@@ -53,7 +53,6 @@ exports.delete_a_usuario = function(req, res) {
 };
 
 exports.get_login_token = function(req, res) {
-  var hashedPassword = bcrypt.hashSync(req.body.Password, 8);
   Task.findOne({
     Correo: req.body.Correo
   }, function(err, task) {
@@ -67,7 +66,7 @@ exports.get_login_token = function(req, res) {
     } else if (task) {
 
       // check if password matches
-      if (task.Password != hashedPassword) {
+      if (!passwordIsValid) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
 
