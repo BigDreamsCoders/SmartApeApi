@@ -70,4 +70,6 @@ module.exports = function(app) {
     .post(tipoList.create_a_tipo);
   app.route('/tipo/:tipoId')
     .delete(tipoList.delete_a_tipo);
+  app.route('/tipo/:tipoIdioma')
+    .get(tipoList.read_a_tipo);
 };

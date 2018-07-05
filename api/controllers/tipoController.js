@@ -30,3 +30,11 @@ var mongoose = require('mongoose'),
       res.json({ message: 'Task successfully deleted' });
     });
   };
+
+  exports.read_a_tipo = function(req, res) {
+    Task.find(req.params.Lenguaje, function(err, task) {
+      if (err)
+        res.send(err);
+      res.json(task);
+    });
+  };
