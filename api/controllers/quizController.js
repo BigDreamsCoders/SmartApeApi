@@ -56,3 +56,11 @@ exports.read_a_social = function(req, res) {
     res.json(task.Elementos_sociales);
   });
 };
+
+exports.read_a_categoria = function(req, res) {
+    Task.find({ Categoria: req.params.categoria}, function (err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};

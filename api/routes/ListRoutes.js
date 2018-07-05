@@ -31,6 +31,9 @@ module.exports = function(app) {
 
   app.route('/quiz/social/:quizId')
     .get(quizList.read_a_social);
+
+  app.route('/quiz/categoria/:categoria')
+    .get(quizList.read_a_categoria);
   /*- USUARIO -*/
   // Rutas de usuario
   app.route('/usuario')
