@@ -37,8 +37,20 @@ module.exports = function(app) {
 
     app.route('/usuario/me')
       .get(VerifyToken, usuarioList.read_a_usuario_me)
-      .put(VerifyToken, usuarioList.update_a_usuario_me)
+      .put(VerifyToken, usuarioList.update_a_usuario_me);
 
+/*
+    app.route('/usuario/favoritos')
+      .post(VerifyToken, usuarioList.read_a_usuario_me)
+      .delete(VerifyToken, usuarioList.update_a_usuario_me);
+
+    app.route('/usuario/guardados')
+      .post(VerifyToken, usuarioList.read_a_usuario_me)
+      .delete(VerifyToken, usuarioList.update_a_usuario_me);
+
+    app.route('/usuario/created')
+      .post(VerifyToken, usuarioList.read_a_usuario_me)
+      .delete(VerifyToken, usuarioList.update_a_usuario_me);*/
 
     app.route('/usuario/:usuarioId')
       .get(VerifyToken, usuarioList.read_a_usuario)
