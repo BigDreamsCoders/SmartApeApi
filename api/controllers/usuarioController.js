@@ -67,11 +67,11 @@ exports.add_favorito = function(req, res, next) {
   Task.findByIdAndUpdate(req.userId, { password: 0 }, function (err, task) {
     if (err) return res.status(500).send("There was a problem finding the user.");
     if (!task) return res.status(404).send("No user found.");
-    {$push: {items: item}},
+    /*{$push: {items: item}},
     {safe: true, upsert: true},
     function(err, model) {
         console.log(err);
-    }
+    }*/
     res.status(200).send(task);
   });
 };
