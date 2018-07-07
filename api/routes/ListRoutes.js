@@ -25,7 +25,7 @@ module.exports = function(app) {
     .get(VerifyToken, quizList.list_all_quiz)
     .post(VerifyToken, quizList.create_a_quiz);
   // Rutas para realizar modificaciones en un quiz
-  app.route('/quiz/:quizId')
+  app.route('/quiz/administrar/:quizId')
     .get(VerifyToken, quizList.read_a_quiz)
     .put(VerifyToken, quizList.update_a_quiz)
     .delete(VerifyToken, quizList.delete_a_quiz);
