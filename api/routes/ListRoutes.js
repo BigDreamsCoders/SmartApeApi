@@ -54,12 +54,12 @@ module.exports = function(app) {
     .post(usuarioList.add_guardado)
     .delete(usuarioList.delete_guardado);
 
-  app.route('/usuario/created/:quizId')
+  app.route('/usuario/creados/:quizId')
     .post(usuarioList.add_created)
     .delete(usuarioList.delete_created);
 
   // Acciones para editar otros usuarios
-  app.route('/usuario/:usuarioId')
+  app.route('/usuario/administrar/:usuarioId')
     .get(VerifyToken, usuarioList.read_a_usuario)
     .put(VerifyToken, usuarioList.update_a_usuario)
     .delete(VerifyToken, usuarioList.delete_a_usuario);
@@ -72,10 +72,10 @@ module.exports = function(app) {
   app.route('/tipo')
     .get(VerifyToken, tipoList.list_all_tipo)
     .post(VerifyToken, tipoList.create_a_tipo);
-  app.route('/tipo/:tipoId')
+  app.route('/tipo/borrar/:tipoId')
     .delete(VerifyToken, tipoList.delete_a_tipo);
   // Retorna las categorias
-  app.route('/tipo/:tipoIdioma')
+  app.route('/tipo/lista/:tipoIdioma')
     .get(VerifyToken, tipoList.read_a_tipo);
   /*- RESUELTO -*/
   app.route('/resuelto')
