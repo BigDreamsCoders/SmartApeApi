@@ -47,16 +47,16 @@ module.exports = function(app) {
 
   // Acciones que realiza el usuario con respecto a los quiz
   app.route('/usuario/favoritos/:quizId')
-    .post(usuarioList.add_favorito)
-    .delete(usuarioList.delete_favorito);
+    .post(VerifyToken, usuarioList.add_favorito)
+    .delete(VerifyToken, usuarioList.delete_favorito);
 
   app.route('/usuario/guardados/:quizId')
-    .post(usuarioList.add_guardado)
-    .delete(usuarioList.delete_guardado);
+    .post(VerifyToken, usuarioList.add_guardado)
+    .delete(VerifyToken, usuarioList.delete_guardado);
 
   app.route('/usuario/creados/:quizId')
-    .post(usuarioList.add_created)
-    .delete(usuarioList.delete_created);
+    .post(VerifyToken,usuarioList.add_created)
+    .delete(VerifyToken,usuarioList.delete_created);
 
   // Acciones para editar otros usuarios
   app.route('/usuario/administrar/:usuarioId')

@@ -72,11 +72,7 @@ exports.delete_a_usuario = function(req, res) {
 };
 //
 exports.add_favorito = function(req, res, next) {
-  var idsujeto =  req.userId;
-  console.log(req.userId+" primero");
   Task.findById(req.userId, { password: 0 }, function (err, task) {
-    console.log(idsujeto+" segundo");
-    console.log(req.params.quizId);
     if (err) return res.status(500).send("There was a problem finding the user.");
     if (!task) return res.status(404).send("No user found.");
     task.Collecion_favoritos[0].location.push(req.params.quizId);
