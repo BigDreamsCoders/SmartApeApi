@@ -25,7 +25,7 @@ exports.read_a_resuelto = function(req, res) {
   Task.findById(req.params.resueltoId, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task.Collecion_soluciones);
+    res.json(task);
   });
 };
 
