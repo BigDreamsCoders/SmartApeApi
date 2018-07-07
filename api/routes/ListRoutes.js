@@ -46,15 +46,15 @@ module.exports = function(app) {
     .put(VerifyToken, usuarioList.update_a_usuario_me);
 
   // Acciones que realiza el usuario con respecto a los quiz
-  app.route('/usuario/favoritos')
+  app.route('/usuario/favoritos/:quizId')
     .post(usuarioList.add_favorito)
     .delete(usuarioList.delete_favorito);
 
-  app.route('/usuario/guardados')
+  app.route('/usuario/guardados/:quizId')
     .post(usuarioList.add_guardado)
     .delete(usuarioList.delete_guardado);
 
-  app.route('/usuario/created')
+  app.route('/usuario/created/:quizId')
     .post(usuarioList.add_created)
     .delete(usuarioList.delete_created);
 
