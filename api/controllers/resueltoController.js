@@ -50,7 +50,7 @@ exports.delete_a_resuelto = function(req, res) {
 
 
 exports.list_all_resuelto_user = function(req, res, next) {
-  Task.find({ IdUsuario: req.userId}, function (err, task) {
+  Task.find({ IdUsuario: (req.userId, { password: 0 })}, function (err, task) {
     if (err) return res.status(500).send("There was a problem finding the user.");
     if (!task) return res.status(404).send("No user found.");
     res.status(200).send(task);
