@@ -44,7 +44,7 @@ var QuizSchema = new Schema({
 var SolucionesSchema = new Schema({
   Correcto: { type: String},
   Respuesta_pregunta: { type: String}
-}) ;
+});
 //Esquema principal de pregunta
 var PreguntaSchema = new Schema({
   Premisa: {type:String},
@@ -75,8 +75,21 @@ var UsuarioSchema = new Schema({
     default: Date.now
   }
 });
+// Esquema de resuelto
+var ResueltoSchema = new Schema({
+    IdUsuario: {type:String},
+    IdQuiz: {type:String},
+    Titulo: {type:String},
+    Nota: {type:String},
+    Fecha_creacion: {
+      type: Date,
+      default: Date.now
+    }
+}, {_id: false});
+
 
 module.exports = mongoose.model('Tipo', tipoSchema);
 module.exports = mongoose.model('Pregunta', PreguntaSchema);
 module.exports = mongoose.model('Quiz', QuizSchema);
 module.exports = mongoose.model('Usuario', UsuarioSchema);
+module.exports = mongoose.model('Resuelto', ResueltoSchema);

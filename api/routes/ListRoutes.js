@@ -3,7 +3,8 @@ module.exports = function(app) {
   var preguntaList = require('../controllers/preguntasController');
   var quizList = require('../controllers/quizController');
   var usuarioList = require('../controllers/usuarioController');
-  var tipoList = require('../controllers/tipoController')
+  var tipoList = require('../controllers/tipoController');
+  var resueltoList = require('../controllers/resueltoController');
   var VerifyToken = require('./verificarToken');
   /*- PREGUNTAS -*/
   // Rutas de general
@@ -76,4 +77,13 @@ module.exports = function(app) {
   // Retorna las categorias
   app.route('/tipo/:tipoIdioma')
     .get(VerifyToken, tipoList.read_a_tipo);
+  /*- RESUELTO -*/
+  app.route('/resuelto')
+    .get(VerifyToken, resueltoController.list_all_resuelto)
+    .post(VerifyToken, resueltoController.create_a_resuelto);
+  // Rutas para realizar modificaciones en un resuelto
+  app.route('/resuelto/:resueltoId')
+    .get(VerifyToken, resueltoController.read_a_resuelto)
+    .put(VerifyToken, resueltoController.update_a_resuelto)
+    .delete(VerifyToken, resueltoController.delete_a_resuelto);
 };
