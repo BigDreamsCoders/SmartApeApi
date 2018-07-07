@@ -12,8 +12,8 @@ exports.list_all_resuelto = function(req, res) {
 };
 
 exports.create_a_resuelto = function(req, res) {
-  var new_pregunta = new Task(req.body);
-  new_pregunta.save(function(err, task) {
+  var new_resuelto = new Task(req.body);
+  new_resuelto.save(function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
@@ -21,7 +21,7 @@ exports.create_a_resuelto = function(req, res) {
 };
 
 exports.create_a_resuelto = function(req, res) {
-  Task.findById(req.params.preguntaId, function(err, task) {
+  Task.findById(req.params.resueltoId, function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
@@ -29,7 +29,7 @@ exports.create_a_resuelto = function(req, res) {
 };
 
 exports.read_a_resuelto = function(req, res) {
-  Task.findById(req.params.preguntaId, function(err, task) {
+  Task.findById(req.params.resueltoId, function(err, task) {
     if (err)
       res.send(err);
     res.json(task.Collecion_soluciones);
@@ -37,7 +37,7 @@ exports.read_a_resuelto = function(req, res) {
 };
 
 exports.update_a_resuelto = function(req, res) {
-  Task.findOneAndUpdate({_id: req.params.preguntaId}, req.body, {new: true}, function(err, task) {
+  Task.findOneAndUpdate({_id: req.params.resueltoId}, req.body, {new: true}, function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
@@ -47,10 +47,18 @@ exports.update_a_resuelto = function(req, res) {
 exports.delete_a_resuelto = function(req, res) {
 
   Task.remove({
-    _id: req.params.preguntaId
+    _id: req.params.resueltoId
   }, function(err, task) {
     if (err)
       res.send(err);
     res.json({ message: 'Task successfully deleted' });
+  });
+};
+
+exports.list_all_resuelto_user = function(req, res, next) {
+  Task.find({ IdUsuario: req.userId}, function (err, task) {
+    if (err) return res.status(500).send("There was a problem finding the user.");
+    if (!task) return res.status(404).send("No user found.");
+    res.status(200).send(task);
   });
 };

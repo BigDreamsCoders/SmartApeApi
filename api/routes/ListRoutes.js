@@ -86,4 +86,7 @@ module.exports = function(app) {
     .get(VerifyToken, resueltoList.read_a_resuelto)
     .put(VerifyToken, resueltoList.update_a_resuelto)
     .delete(VerifyToken, resueltoList.delete_a_resuelto);
+  // Para modificar un resuelto personal
+  app.route('/resuelto/usuario')
+    .get(VerifyToken, resueltoList.list_all_resuelto_user);
 };
