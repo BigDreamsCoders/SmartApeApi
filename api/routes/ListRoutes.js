@@ -79,11 +79,11 @@ module.exports = function(app) {
     .get(VerifyToken, tipoList.read_a_tipo);
   /*- RESUELTO -*/
   app.route('/resuelto')
-    .get(VerifyToken, resueltoController.list_all_resuelto)
-    .post(VerifyToken, resueltoController.create_a_resuelto);
+    .get(VerifyToken, resueltoList.list_all_resuelto)
+    .post(VerifyToken, resueltoList.create_a_resuelto);
   // Rutas para realizar modificaciones en un resuelto
   app.route('/resuelto/:resueltoId')
-    .get(VerifyToken, resueltoController.read_a_resuelto)
-    .put(VerifyToken, resueltoController.update_a_resuelto)
-    .delete(VerifyToken, resueltoController.delete_a_resuelto);
+    .get(VerifyToken, resueltoList.read_a_resuelto)
+    .put(VerifyToken, resueltoList.update_a_resuelto)
+    .delete(VerifyToken, resueltoList.delete_a_resuelto);
 };
