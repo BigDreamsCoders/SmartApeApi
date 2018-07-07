@@ -82,7 +82,7 @@ module.exports = function(app) {
     .get(VerifyToken, resueltoList.list_all_resuelto)
     .post(VerifyToken, resueltoList.create_a_resuelto);
   // Rutas para realizar modificaciones en un resuelto
-  app.route('/resuelto/:resueltoId')
+  app.route('/resuelto/especifico/:resueltoId')
     .get(VerifyToken, resueltoList.read_a_resuelto)
     .put(VerifyToken, resueltoList.update_a_resuelto)
     .delete(VerifyToken, resueltoList.delete_a_resuelto);
