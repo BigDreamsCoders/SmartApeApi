@@ -20,13 +20,6 @@ exports.create_a_resuelto = function(req, res) {
   });
 };
 
-exports.create_a_resuelto = function(req, res) {
-  Task.findById(req.params.resueltoId, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
-  });
-};
 
 exports.read_a_resuelto = function(req, res) {
   Task.findById(req.params.resueltoId, function(err, task) {
