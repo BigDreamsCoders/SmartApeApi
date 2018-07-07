@@ -8,37 +8,37 @@ module.exports = function(app) {
   /*- PREGUNTAS -*/
   // Rutas de general
   app.route('/preguntas')
-    .get(preguntaList.list_all_pregunta)
-    .post(preguntaList.create_a_pregunta);
+    .get(VerifyToken, preguntaList.list_all_pregunta)
+    .post(VerifyToken, preguntaList.create_a_pregunta);
   // Rutas para realizar modificaciones de una pregunta
   app.route('/preguntas/:preguntaId')
-    .get(preguntaList.read_a_pregunta)
-    .put(preguntaList.update_a_pregunta)
-    .delete(preguntaList.delete_a_pregunta);
+    .get(VerifyToken, preguntaList.read_a_pregunta)
+    .put(VerifyToken, preguntaList.update_a_pregunta)
+    .delete(VerifyToken, preguntaList.delete_a_pregunta);
 
   app.route('/preguntas/soluciones/:preguntaId')
     .get(preguntaList.read_a_soluciones);
   /*- QUIZ -*/
   // Rutas de quiz
   app.route('/quiz')
-    .get(quizList.list_all_quiz)
-    .post(quizList.create_a_quiz);
+    .get(VerifyToken, quizList.list_all_quiz)
+    .post(VerifyToken, quizList.create_a_quiz);
   // Rutas para realizar modificaciones en un quiz
   app.route('/quiz/:quizId')
-    .get(quizList.read_a_quiz)
-    .put(quizList.update_a_quiz)
-    .delete(quizList.delete_a_quiz);
+    .get(VerifyToken, quizList.read_a_quiz)
+    .put(VerifyToken, quizList.update_a_quiz)
+    .delete(VerifyToken, quizList.delete_a_quiz);
 
   app.route('/quiz/social/:quizId')
-    .get(quizList.read_a_social);
+    .get(VerifyToken, quizList.read_a_social);
 
   app.route('/quiz/categoria/:categoria')
-    .get(quizList.read_a_categoria);
+    .get(VerifyToken, quizList.read_a_categoria);
   /*- USUARIO -*/
   // Rutas de usuario
   app.route('/usuario')
-    .get(usuarioList.list_all_usuario)
-    .post(usuarioList.create_a_usuario);
+    .get(VerifyToken, usuarioList.list_all_usuario)
+    .post(VerifyToken, usuarioList.create_a_usuario);
 
   app.route('/usuario/me')
     .get(VerifyToken, usuarioList.read_a_usuario_me)
@@ -46,16 +46,16 @@ module.exports = function(app) {
 
   // Acciones que realiza el usuario con respecto a los quiz
   app.route('/usuario/favoritos')
-    .post(VerifyToken, usuarioList.add_favorito)
-    .delete(VerifyToken, usuarioList.delete_favorito);
+    .post(usuarioList.add_favorito)
+    .delete(usuarioList.delete_favorito);
 
   app.route('/usuario/guardados')
-    .post(VerifyToken, usuarioList.add_guardado)
-    .delete(VerifyToken, usuarioList.delete_guardado);
+    .post(usuarioList.add_guardado)
+    .delete(usuarioList.delete_guardado);
 
   app.route('/usuario/created')
-    .post(VerifyToken, usuarioList.add_created)
-    .delete(VerifyToken, usuarioList.delete_created);
+    .post(usuarioList.add_created)
+    .delete(usuarioList.delete_created);
 
   // Acciones para editar otros usuarios
   app.route('/usuario/:usuarioId')
@@ -63,16 +63,17 @@ module.exports = function(app) {
     .put(VerifyToken, usuarioList.update_a_usuario)
     .delete(VerifyToken, usuarioList.delete_a_usuario);
 
-  // Ruta para obtener el token
+  // Ruta para obtener el token Corre: dato Password: dato
   app.route('/usuario/login')
     .post(usuarioList.get_login_token);
 
   /*- TIPOS -*/
   app.route('/tipo')
-    .get(tipoList.list_all_tipo)
-    .post(tipoList.create_a_tipo);
+    .get(VerifyToken, tipoList.list_all_tipo)
+    .post(VerifyToken, tipoList.create_a_tipo);
   app.route('/tipo/:tipoId')
-    .delete(tipoList.delete_a_tipo);
+    .delete(VerifyToken, tipoList.delete_a_tipo);
+  // Retorna las categorias
   app.route('/tipo/:tipoIdioma')
-    .get(tipoList.read_a_tipo);
+    .get(VerifyToken, tipoList.read_a_tipo);
 };
