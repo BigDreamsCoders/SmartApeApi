@@ -62,9 +62,9 @@ var UsuarioSchema = new Schema({
     default: false},
   Correo: {type: String},
   Password: {type: String},
-  Collecion_favoritos: [String],
-  Collecion_guardados: [String],
-  Collecion_quizzes: [String],
+  Collecion_favoritos: [ObjectID],
+  Collecion_guardados: [ObjectID],
+  Collecion_quizzes: [ObjectID],
   Descripcion: {type: String},
   Lugar: {type: String},
   Fecha_nacimiento: {type: String},
@@ -77,8 +77,8 @@ var UsuarioSchema = new Schema({
 });
 // Esquema de resuelto
 var ResueltoSchema = new Schema({
-    IdUsuario: {type:String},
-    IdQuiz: {type:String},
+    IdUsuario: {type:ObjectID},
+    IdQuiz: {type:ObjectID},
     Titulo: {type:String},
     Nota: {type:String},
     Fecha_creacion: {
