@@ -7,7 +7,7 @@ exports.list_all_pregunta = function(req, res) {
   Task.find({}, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    return res.status(200).send(task);
   });
 };
 
@@ -16,7 +16,7 @@ exports.create_a_pregunta = function(req, res) {
   new_pregunta.save(function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    return res.status(200).send(task);
   });
 };
 
@@ -24,7 +24,7 @@ exports.read_a_pregunta = function(req, res) {
   Task.findById(req.params.preguntaId, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    return res.status(200).send(task);
   });
 };
 
@@ -32,7 +32,7 @@ exports.read_a_soluciones = function(req, res) {
   Task.findById(req.params.preguntaId, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task.Collecion_soluciones);
+    return res.status(200).send(task.Collecion_soluciones);
   });
 };
 
@@ -40,7 +40,7 @@ exports.update_a_pregunta = function(req, res) {
   Task.findOneAndUpdate({_id: req.params.preguntaId}, req.body, {new: true}, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    return res.status(200).send(task);
   });
 };
 

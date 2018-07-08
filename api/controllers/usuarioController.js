@@ -11,7 +11,7 @@ exports.list_all_usuario = function(req, res) {
   Task.find({}, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.status(200).send(task);
   });
 };
 
@@ -22,15 +22,15 @@ exports.create_a_usuario = function(req, res) {
   new_usuario.save(function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.status(200).send(task);
   });
 };
 
 // Request referentes a token
 exports.read_a_usuario_me = function(req, res, next) {
   Task.findById(req.userId, { password: 0 }, function (err, task) {
-    if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!task) return res.status(404).send("No user found.");
+    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
+    if (!task) return res.status(404).send({ success: false, message: 'No user found' });
     res.status(200).send(task);
   });
 };
@@ -39,7 +39,7 @@ exports.update_a_usuario_me = function(req, res, next) {
     Task.findOneAndUpdate({_id: req.userId}, req.body, {new: true}, function(err, task) {
       if (err)
         res.send(err);
-      res.json(task);
+      res.status(200).send(task);
     });
 };
 
@@ -48,7 +48,7 @@ exports.read_a_usuario = function(req, res) {
   Task.findById(req.params.usuarioId, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.status(200).send(task);
   });
 };
 
@@ -56,7 +56,7 @@ exports.update_a_usuario = function(req, res) {
   Task.findOneAndUpdate({_id: req.params.usuarioId}, req.body, {new: true}, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.status(200).send(task);
   });
 };
 
@@ -67,63 +67,63 @@ exports.delete_a_usuario = function(req, res) {
   }, function(err, task) {
     if (err)
       res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    res.status(200).send({success: true, message: 'Task successfully deleted' });
   });
 };
 //
 exports.add_favorito = function(req, res, next) {
   Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_favoritos: req.params.quizId}},
     function (err, task) {
-    if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!task) return res.status(404).send("No user found.");
-    res.status(200).send(task);
+      if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
+      if (!task) return res.status(404).send({ success: false, message: 'No user found' });
+    return res.status(200).send(task);
   });
 };
 exports.delete_favorito = function(req, res, next) {
   Task.findById(req.userId, { password: 0 }, function (err, task) {
-    if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!task) return res.status(404).send("No user found.");
+    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
+    if (!task) return res.status(404).send({ success: false, message: 'No user found' });
     task.Collecion_favoritos.remove(req.params.quizId);
     task.save(callback);
-    res.status(200).send(task);
+    return res.status(200).send(task);
   });
 };
 
 exports.add_guardado = function(req, res, next) {
   Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_guardados: req.params.quizId}},
      function (err, task) {
-    if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!task) return res.status(404).send("No user found.");
-    res.status(200).send(task);
+       if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
+       if (!task) return res.status(404).send({ success: false, message: 'No user found' });
+    return res.status(200).send(task);
   });
 };
 
 exports.delete_guardado = function(req, res, next) {
   Task.findById(req.userId, { password: 0 }, function (err, task) {
-    if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!task) return res.status(404).send("No user found.");
+    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
+    if (!task) return res.status(404).send({ success: false, message: 'No user found' });
     task.Collecion_guardados.remove(req.params.quizId);
     task.save(callback);
-    res.status(200).send(task);
+    return res.status(200).send(task);
   });
 };
 
 exports.add_created = function(req, res, next) {
   Task.findById({_id: req.userId}, {$push: {Collecion_quizzes: req.params.quizId}},
     function (err, task) {
-    if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!task) return res.status(404).send("No user found.");
-    res.status(200).send(task);
+      if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
+      if (!task) return res.status(404).send({ success: false, message: 'No user found' });
+    return res.status(200).send(task);
   });
 };
 
 exports.delete_created = function(req, res, next) {
   Task.findById(req.userId, { password: 0 }, function (err, task) {
-    if (err) return res.status(500).send("There was a problem finding the user.");
-    if (!task) return res.status(404).send("No user found.");
+    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
+    if (!task) return res.status(404).send({ success: false, message: 'No user found' });
     task.Collecion_quizzes.remove(req.params.quizId);
     task.save(callback);
-    res.status(200).send(task);
+    return res.status(200).send(task);
   });
 };
 
@@ -138,13 +138,13 @@ exports.get_login_token = function(req, res) {
 
 
     if (!task) {
-      res.json({ success: false, message: 'Authentication failed. User not found.' });
+      return res.status(500).send({ success: false, message: 'Authentication failed. User not found.' });
     } else if (task) {
 
       // Verficia si la contra coincide
       var passwordIsValid = bcrypt.compareSync(req.body.Password, task.Password);
       if (!passwordIsValid) {
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+        return res.status(500).send({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
 
         // Se crea un token con el id del usuario

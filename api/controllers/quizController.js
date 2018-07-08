@@ -18,7 +18,7 @@ exports.create_a_quiz = function(req, res, next) {
   new_quiz.save(function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    return res.status(200).send(task);
   });
 };
 
@@ -27,7 +27,7 @@ exports.read_a_quiz = function(req, res) {
   Task.findById(req.params.quizId, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    return res.status(200).send(task);
   });
 };
 
@@ -38,7 +38,7 @@ exports.delete_a_quiz = function(req, res) {
   }, function(err, task) {
     if (err)
       res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    return res.status(200).send({success: true, message: 'Task successfully deleted' });
   });
 };
 
@@ -46,7 +46,7 @@ exports.update_a_quiz = function(req, res) {
   Task.findOneAndUpdate({_id: req.params.quizId}, req.body, {new: true}, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task);
+    return res.status(200).send(task);
   });
 };
 
@@ -54,14 +54,14 @@ exports.read_a_social = function(req, res) {
   Task.findById(req.params.quizId, function(err, task) {
     if (err)
       res.send(err);
-    res.json(task.Elementos_sociales);
+    return res.status(200).send(task.Elementos_sociales);
   });
 };
 
 exports.read_a_categoria = function(req, res) {
     Task.find({ Categoria: req.params.categoria}, function (err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
+      if (err)
+        res.send(err);
+      return res.status(200).send(task);
   });
 };

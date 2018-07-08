@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     Task.find({}, function(err, task) {
       if (err)
         res.send(err);
-      res.json(task);
+      return res.status(200).send(task);
     });
   };
 
@@ -16,7 +16,7 @@ var mongoose = require('mongoose'),
     new_tipo.save(function(err, task) {
       if (err)
         res.send(err);
-      res.json(task);
+      return res.status(200).send(task);
     });
   };
 
@@ -27,14 +27,14 @@ var mongoose = require('mongoose'),
     }, function(err, task) {
       if (err)
         res.send(err);
-      res.json({ message: 'Task successfully deleted' });
+      return res.status(200).send({success: true, message: 'Task successfully deleted' });
     });
   };
 
   exports.read_a_tipo = function(req, res) {
       Task.findOne({ Lenguaje: req.params.tipoIdioma}, function (err, task) {
-      if (err)
-        res.send(err);
-      res.json(task.Titulo);
+        if (err)
+          res.send(err);
+        return res.status(200).send(task.Titulo);
     });
   };

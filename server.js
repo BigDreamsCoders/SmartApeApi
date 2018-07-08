@@ -4,7 +4,7 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   morgan = require('morgan'),
-  Task = require('./api/models/ListModels');
+  Task = require('./api/models/listModels');
 
 
 // mongoose instance connection url connection
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var routes = require('./api/routes/ListRoutes'); //importing route
+var routes = require('./api/routes/listRoutes'); //importing route
 
 routes(app); //register the route
 
