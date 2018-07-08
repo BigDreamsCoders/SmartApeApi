@@ -14,7 +14,7 @@ exports.list_all_quiz = function(req, res) {
 
 exports.create_a_quiz = function(req, res, next) {
   var new_quiz = new Task(req.body);
-  new_quiz.set('Creador', req.userId)
+  new_quiz.set('Creador', req.userId);
   new_quiz.save(function(err, task) {
     if (err)
       res.send(err);
