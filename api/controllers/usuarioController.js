@@ -109,7 +109,7 @@ exports.delete_guardado = function(req, res, next) {
 };
 
 exports.add_created = function(req, res, next) {
-  Task.findById({_id: req.userId}, {$push: {Collecion_quizzes: req.params.quizId},
+  Task.findById({_id: req.userId}, {$push: {Collecion_quizzes: req.params.quizId}},
     function (err, task) {
     if (err) return res.status(500).send("There was a problem finding the user.");
     if (!task) return res.status(404).send("No user found.");
