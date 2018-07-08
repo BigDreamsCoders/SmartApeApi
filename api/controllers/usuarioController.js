@@ -74,56 +74,53 @@ exports.delete_a_usuario = function(req, res) {
 exports.add_favorito = function(req, res, next) {
   Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_favoritos: req.params.quizId}},
     function (err, task) {
-      if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
+      if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the quiz.' });
       if (!task) return res.status(404).send({ success: false, message: 'No user found' });
-    return res.status(200).send(task);
+    return res.status(200).send({ success: true, message: 'favorite added' });
   });
 };
 exports.delete_favorito = function(req, res, next) {
-  Task.findById(req.userId, { password: 0 }, function (err, task) {
-    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
-    if (!task) return res.status(404).send({ success: false, message: 'No user found' });
-    task.Collecion_favoritos.remove(req.params.quizId);
-    task.save(callback);
-    return res.status(200).send(task);
+  Task.findOneAndUpdate({_id: req.userId}, {$pullAll: { Collecion_favoritos: [req.params.quizId]}},
+    function (err, task) {
+    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the quiz.' });
+    if (!task) return res.status(404).send({ success: false, message: 'No quiz found' });
+    return res.status(200).send({ success: true, message: 'favorite removed' });
   });
 };
 
 exports.add_guardado = function(req, res, next) {
   Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_guardados: req.params.quizId}},
      function (err, task) {
-       if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
-       if (!task) return res.status(404).send({ success: false, message: 'No user found' });
-    return res.status(200).send(task);
+       if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the quiz.' });
+       if (!task) return res.status(404).send({ success: false, message: 'No quiz found' });
+    return res.status(200).send({ success: true, message: 'Saved' });
   });
 };
 
 exports.delete_guardado = function(req, res, next) {
-  Task.findById(req.userId, { password: 0 }, function (err, task) {
-    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
-    if (!task) return res.status(404).send({ success: false, message: 'No user found' });
-    task.Collecion_guardados.remove(req.params.quizId);
-    task.save(callback);
-    return res.status(200).send(task);
+  Task.findOneAndUpdate({_id: req.userId}, {$pullAll: { Collecion_guardados: [req.params.quizId]}},
+    function (err, task) {
+    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the quiz.' });
+    if (!task) return res.status(404).send({ success: false, message: 'No quiz found' });
+    return res.status(200).send({ success: true, message: 'Save removed' });
   });
 };
 
 exports.add_created = function(req, res, next) {
   Task.findById({_id: req.userId}, {$push: {Collecion_quizzes: req.params.quizId}},
     function (err, task) {
-      if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
-      if (!task) return res.status(404).send({ success: false, message: 'No user found' });
-    return res.status(200).send(task);
+      if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the quiz.' });
+      if (!task) return res.status(404).send({ success: false, message: 'No quiz found' });
+    return res.status(200).send({ success: true, message: 'Added' });
   });
 };
 
 exports.delete_created = function(req, res, next) {
-  Task.findById(req.userId, { password: 0 }, function (err, task) {
-    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the user.' });
-    if (!task) return res.status(404).send({ success: false, message: 'No user found' });
-    task.Collecion_quizzes.remove(req.params.quizId);
-    task.save(callback);
-    return res.status(200).send(task);
+  Task.findOneAndUpdate({_id: req.userId}, {$pullAll: { Collecion_quizzes: [req.params.quizId]}},
+    function (err, task) {
+    if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the quiz.' });
+    if (!task) return res.status(404).send({ success: false, message: 'No quiz found' });
+    return res.status(200).send({ success: true, message: 'Deleted' });
   });
 };
 
