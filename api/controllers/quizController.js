@@ -12,7 +12,8 @@ exports.list_all_quiz = function(req, res) {
   });
 };
 
-exports.create_a_quiz = function(req, res) {
+exports.create_a_quiz = function(req, res, next) {
+  req.params.creador = req.userId;
   var new_quiz = new Task(req.body);
   new_quiz.save(function(err, task) {
     if (err)
