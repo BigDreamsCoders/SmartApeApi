@@ -20,7 +20,7 @@ module.exports = function(app) {
   app.route('/preguntas/soluciones/:preguntaId')
     .get(preguntaList.read_a_soluciones);
   /*- QUIZ -*/
-  // Rutas de quiz
+  // Rutas de quiz 
   app.route('/quiz')
     .get(VerifyToken, quizList.list_all_quiz)
     .post(VerifyToken, quizList.create_a_quiz);

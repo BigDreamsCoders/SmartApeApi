@@ -56,6 +56,7 @@ var PreguntaSchema = new Schema({
   }
 });
 
+
 var UsuarioSchema = new Schema({
   Admin: {type: Boolean,
     default: false},
