@@ -31,9 +31,8 @@ var QuizSchema = new Schema({
   Estado: {type:Number},
   Descripcion: {type:String},
   Tiempo_limite: {type:String},
-  Total_preguntas: {type:Number},
   Elementos_sociales: {type:SocialSchema},
-  Preguntas: [String],
+  Preguntas: [Schema.Types.ObjectId],
   Fecha_creacion: {
     type: Date,
     default: Date.now
@@ -62,9 +61,9 @@ var UsuarioSchema = new Schema({
     default: false},
   Correo: {type: String},
   Password: {type: String},
-  Collecion_favoritos: [Schema.Types.ObjectId,],
-  Collecion_guardados: [Schema.Types.ObjectId,],
-  Collecion_quizzes: [Schema.Types.ObjectId,],
+  Collecion_favoritos: [Schema.Types.ObjectId],
+  Collecion_guardados: [Schema.Types.ObjectId],
+  Collecion_quizzes: [Schema.Types.ObjectId],
   Descripcion: {type: String},
   Lugar: {type: String},
   Fecha_nacimiento: {type: String},
@@ -77,8 +76,8 @@ var UsuarioSchema = new Schema({
 });
 // Esquema de resuelto
 var ResueltoSchema = new Schema({
-    IdUsuario: {type:Schema.Types.ObjectId,},
-    IdQuiz: {type:Schema.Types.ObjectId,},
+    IdUsuario: {type:Schema.Types.ObjectId},
+    IdQuiz: {type:Schema.Types.ObjectId},
     Titulo: {type:String},
     Nota: {type:String},
     Fecha_creacion: {
