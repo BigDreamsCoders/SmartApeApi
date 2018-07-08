@@ -90,7 +90,7 @@ exports.delete_favorito = function(req, res, next) {
 };
 
 exports.add_guardado = function(req, res, next) {
-  Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_guardados: req.params.quizId},
+  Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_guardados: req.params.quizId}},
      function (err, task) {
     if (err) return res.status(500).send("There was a problem finding the user.");
     if (!task) return res.status(404).send("No user found.");
