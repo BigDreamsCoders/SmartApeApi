@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SmartApes</title>
+    <% include ../partials/header.ejs %>
+  </head>
+  <body class="container">
+    <header>
+        <% include ../partials/navbar %>
+    </header>
+    <main>
+      <div class="row">
+        <div class="col-sm-8 pre-scrollable">
+            <div class="jumbotron firstbar">
+                <h1>Introducción</h1>
+                <p>SmartApes es una aplicacion con fines educativos y entretenimiento, lanzada a mediados del año 2018 por la empresa BigDreamCoders. La aplicacion da la oportunidad al usuario de resolver cuestionarios creados por la misma comunidad, o crear cuestionarios para subirlos en linea para que otras personas puedan resolverlos.</p>
+            </div>
+            <div class="jumbotron secondbar">
+              <h1>API</h1>
+              <p>REST nos permite crear servicios y aplicaciones que pueden ser usadas por cualquier dispositivo o cliente que entienda HTTP. Proveyendo por medio del sitio todas las interacciones posibles y su acceso a postman</p>
+                            <div class="postman-run-button"
+              data-postman-action="collection/import"
+              data-postman-var-1="ae2b56c5b826e7e625c8"></div>
+              <script type="text/javascript">
+              (function (p,o,s,t,m,a,n) {
+                !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+                !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+                  (n = o.createElement("script")),
+                  (n.id = s+t), (n.async = 1), (n.src = m), n
+                ));
+              }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+              </script>
+            </div>
+        </div>
+
+          <div class="col-sm-4">
+              <ul id="sidemenu" class="list-group">
+                <li class="list-group-item first active"><h3 >Bienvenido</h3></li>
+                <li class="list-group-item second"><h3>Informacion</h3></li>
+              </ul>
+          </div>
+
+        </div>
+    </main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+  </body>
+</html>

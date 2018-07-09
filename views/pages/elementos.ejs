@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SmartApes</title>
+    <% include ../partials/header.ejs %>
+  </head>
+  <body class="container">
+    <header>
+        <% include ../partials/navbar %>
+    </header>
+    <main>
+      <div class="row">
+        <div class="col-sm-8 pre-scrollable">
+          <div class="jumbotron firstbar">
+              <h1>Usuario</h1>
+              <p>Como usuario consumidor de cuestionarios, se tiene la posibilidad de puntuarlos, agregaros a favoritos, eliminarlos de favoritos y filtrarlos. Al terminar un cuestionario también se guardará la puntuación, para que otras personas la vean. </p>
+          </div>
+          <div class="jumbotron secondbar">
+              <h1>Quiz</h1>
+              <p>Como creador de cuestionarios, siendo el sistema de opción multiple, el usuario podrá poner tantas opciones como guste y marcar cuales seran las opciones correctas a su pregunta.  Al terminar, el cuestionario se pondrá en linea, listo para que la comunidad pueda resolverlo y puntuarlo. </p>
+          </div>
+          <div class="jumbotron thirdbar">
+              <h1>Pregunta</h1>
+              <p>Las preguntas en nuestra app pueden tener tanto un fin académico, en caso de que un profesor quiera realizar una evaluación y utilice la aplicación para llevarla a cabo; un fin educativo, en caso de que se busquen temas de conocimientos generales para expandir estos; y recreaticos, en caso de que un usuario quiera ponerse a prueba viendo cuanto sabe sobre deportes o sobre su seria de tv favorita. Todo esto por medio de preguntas tipo opción múltiple.</p>
+          </div>
+          <div class="jumbotron fourthbar">
+              <h1>Categoria</h1>
+              <p>Ya sea al momento de crear un cuestionario o al buscar uno para resolver, el usuario puede seleccionar la categoria de este. Las categorias desde temas educativos como ciencias, historia o matematicas, hasta temas mas casuales como preguntas del area de entretenimiendo o deportes</p>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+            <ul id="sidemenu" class="list-group">
+              <li class="list-group-item first active"><h3>Usuario</h3></li>
+              <li class="list-group-item second "><h3>Quiz</h3></li>
+              <li class="list-group-item third "><h3>Pregunta</h3></li>
+              <li class="list-group-item fourth"><h3>Tipo</h3></li>
+            </ul>
+        </div>
+
+        </div>
+    </main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+  </body>
+</html>

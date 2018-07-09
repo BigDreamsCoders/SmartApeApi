@@ -129,11 +129,7 @@ exports.get_login_token = function(req, res) {
   Task.findOne({
     Correo: req.body.Correo
   }, function(err, task) {
-
     if (err) throw err;
-
-
-
     if (!task) {
       return res.status(500).send({ success: false, message: 'Authentication failed. User not found.' });
     } else if (task) {
@@ -156,8 +152,6 @@ exports.get_login_token = function(req, res) {
           token: token
         });
       }
-
     }
-
   });
 };
