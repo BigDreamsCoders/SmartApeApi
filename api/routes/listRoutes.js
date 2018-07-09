@@ -41,6 +41,9 @@ module.exports = function(app) {
     .get(VerifyToken, usuarioList.list_all_usuario)
     .post(VerifyToken, usuarioList.create_a_usuario);
 
+    app.route('/usuario/crear')
+      .post(usuarioList.create_a_usuario);
+
   app.route('/usuario/me')
     .get(VerifyToken, usuarioList.read_a_usuario_me)
     .put(VerifyToken, usuarioList.update_a_usuario_me);
@@ -89,4 +92,7 @@ module.exports = function(app) {
   // Para modificar un resuelto personal
   app.route('/resuelto/usuario')
     .get(VerifyToken, resueltoList.list_all_resuelto_user);
+
+
+
 };
