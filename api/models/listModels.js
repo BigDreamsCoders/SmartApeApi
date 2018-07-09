@@ -32,7 +32,6 @@ var QuizSchema = new Schema({
   Descripcion: {type:String},
   Tiempo_limite: {type:String},
   Elementos_sociales: {type:SocialSchema, default: SocialSchema},
-  Preguntas: [Schema.Types.ObjectId],
   Fecha_creacion: {
     type: Date,
     default: Date.now
@@ -47,7 +46,7 @@ var SolucionesSchema = new Schema({
 //Esquema principal de pregunta
 var PreguntaSchema = new Schema({
   Premisa: {type:String},
-  IdQuiz: {type:String,
+  Id_quiz: {type:Schema.Types.ObjectId,
         require: true},
   Tipo_pregunta:{type: Number},
   Collecion_soluciones: [{type:SolucionesSchema, default: SolucionesSchema}],
@@ -83,8 +82,8 @@ var UsuarioSchema = new Schema({
 });
 // Esquema de resuelto
 var ResueltoSchema = new Schema({
-    IdUsuario: {type:Schema.Types.ObjectId},
-    IdQuiz: {type:Schema.Types.ObjectId},
+    Id_usuario: {type:Schema.Types.ObjectId},
+    Id_quiz: {type:Schema.Types.ObjectId},
     Titulo: {type:String},
     Nota: {type:String},
     Fecha_creacion: {

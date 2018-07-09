@@ -27,6 +27,13 @@ exports.read_a_pregunta = function(req, res) {
     return res.status(200).send(task);
   });
 };
+exports.read_a_pregunta_quiz = function(req, res) {
+  Task.find({ Id_quiz: req.params.referenciaId}, function(err, task) {
+    if (err)
+      res.send(err);
+    return res.status(200).send(task);
+  });
+};
 
 exports.read_a_soluciones = function(req, res) {
   Task.findById(req.params.preguntaId, function(err, task) {

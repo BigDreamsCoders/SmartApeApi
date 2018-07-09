@@ -19,6 +19,9 @@ module.exports = function(app) {
 
   app.route('/preguntas/soluciones/:preguntaId')
     .get(preguntaList.read_a_soluciones);
+
+  app.route('/preguntas/obtener/:referenciaId')
+    .get(VerifyToken, preguntaList.read_a_pregunta_quiz);
   /*- QUIZ -*/
   // Rutas de quiz
   app.route('/quiz')
@@ -41,8 +44,8 @@ module.exports = function(app) {
     .get(VerifyToken, usuarioList.list_all_usuario)
     .post(VerifyToken, usuarioList.create_a_usuario);
 
-    app.route('/usuario/crear')
-      .post(usuarioList.create_a_usuario);
+  app.route('/usuario/crear')
+    .post(usuarioList.create_a_usuario);
 
   app.route('/usuario/me')
     .get(VerifyToken, usuarioList.read_a_usuario_me)
