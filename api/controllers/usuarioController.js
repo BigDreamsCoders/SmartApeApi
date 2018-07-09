@@ -107,9 +107,9 @@ exports.delete_guardado = function(req, res, next) {
 };
 
 exports.add_created = function(req, res, next) {
-  Task.findById({_id: req.userId}, {$push: {Collecion_quizzes: req.params.quizId}},
+  Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_quizzes: req.params.quizId}},
     function (err, task) {
-      if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the quiz.' });
+      if (err) return res.status(500).send(err/*{ success: false, message: 'There was a problem finding the quiz.' }*/);
       if (!task) return res.status(404).send({ success: false, message: 'No quiz found' });
     return res.status(200).send({ success: true, message: 'Added' });
   });
