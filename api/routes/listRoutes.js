@@ -48,6 +48,12 @@ module.exports = function(app) {
     .get(VerifyToken, usuarioList.read_a_usuario_me)
     .put(VerifyToken, usuarioList.update_a_usuario_me);
 
+  app.route('/usuario/me/favoritos')
+    .get(VerifyToken, usuarioList.read_a_usuario_me_favoritos);
+  app.route('/usuario/me/guardados')
+    .get(VerifyToken, usuarioList.read_a_usuario_me_guardados);
+  app.route('/usuario/me/creados')
+    .get(VerifyToken, usuarioList.read_a_usuario_me_creados);
   // Acciones que realiza el usuario con respecto a los quiz
   app.route('/usuario/favoritos/:quizId')
     .post(VerifyToken, usuarioList.add_favorito)
@@ -58,8 +64,8 @@ module.exports = function(app) {
     .delete(VerifyToken, usuarioList.delete_guardado);
 
   app.route('/usuario/creados/:quizId')
-    .post(VerifyToken,usuarioList.add_created)
-    .delete(VerifyToken,usuarioList.delete_created);
+    .post(VerifyToken,usuarioList.add_creados)
+    .delete(VerifyToken,usuarioList.delete_creados);
 
   // Acciones para editar otros usuarios
   app.route('/usuario/administrar/:usuarioId')

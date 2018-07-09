@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
   jwt    = require('jsonwebtoken'),
   bcrypt = require('bcryptjs'),
   config = require('../secret'),
-  Task = mongoose.model('Usuario');
+  Task = mongoose.model('Usuario'),
+  HelperTask = mongoose.model('Quiz');
 
 // Retorna todos los usuarios
 exports.list_all_usuario = function(req, res) {
@@ -70,7 +71,7 @@ exports.delete_a_usuario = function(req, res) {
     res.status(200).send({success: true, message: 'Task successfully deleted' });
   });
 };
-//
+// FAVORITOS
 exports.add_favorito = function(req, res, next) {
   Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_favoritos: req.params.quizId}},
     function (err, task) {
@@ -87,7 +88,16 @@ exports.delete_favorito = function(req, res, next) {
     return res.status(200).send({ success: true, message: 'favorite removed' });
   });
 };
-
+exports.read_a_usuario_me_favoritos = function(req, res) {
+  Task.findById({_id: req.userId}, function(err, task) {
+    if (err)
+      res.send(err);
+    HelperTask.find({_id: task.Collecion_favoritos}, function(err, arreglo) {
+      res.status(200).send(arreglo);
+    });
+  });
+};
+// GUARDADOS
 exports.add_guardado = function(req, res, next) {
   Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_guardados: req.params.quizId}},
      function (err, task) {
@@ -105,8 +115,17 @@ exports.delete_guardado = function(req, res, next) {
     return res.status(200).send({ success: true, message: 'Save removed' });
   });
 };
-
-exports.add_created = function(req, res, next) {
+exports.read_a_usuario_me_guardados = function(req, res) {
+  Task.findById({_id: req.userId}, function(err, task) {
+    if (err)
+      res.send(err);
+    HelperTask.find({_id: task.Collecion_guardados}, function(err, arreglo) {
+      res.status(200).send(arreglo);
+    });
+  });
+};
+// CREADOS
+exports.add_creados = function(req, res, next) {
   Task.findOneAndUpdate({_id: req.userId}, {$push: {Collecion_quizzes: req.params.quizId}},
     function (err, task) {
       if (err) return res.status(500).send(err/*{ success: false, message: 'There was a problem finding the quiz.' }*/);
@@ -115,7 +134,7 @@ exports.add_created = function(req, res, next) {
   });
 };
 
-exports.delete_created = function(req, res, next) {
+exports.delete_creados = function(req, res, next) {
   Task.findOneAndUpdate({_id: req.userId}, {$pullAll: { Collecion_quizzes: [req.params.quizId]}},
     function (err, task) {
     if (err) return res.status(500).send({ success: false, message: 'There was a problem finding the quiz.' });
@@ -123,7 +142,15 @@ exports.delete_created = function(req, res, next) {
     return res.status(200).send({ success: true, message: 'Deleted' });
   });
 };
-
+exports.read_a_usuario_me_creados = function(req, res) {
+  Task.findById({_id: req.userId}, function(err, task) {
+    if (err)
+      res.send(err);
+    HelperTask.find({_id: task.Collecion_quizzes}, function(err, arreglo) {
+      res.status(200).send(arreglo);
+    });
+  });
+};
 //Obtener token por medio del login
 exports.get_login_token = function(req, res) {
   Task.findOne({
