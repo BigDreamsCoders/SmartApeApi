@@ -102,11 +102,13 @@ module.exports = function(app) {
   app.route('/resuelto/usuario')
     .get(VerifyToken, resueltoList.list_all_resuelto_user);
 
+
+    app.get('/elementos', function(req, res) {
+        res.render('pages/elementos');
+    });
+    
   app.get('*', function(req, res) {
       res.render('pages/index');
-  });
-  app.get('/elementos', function(req, res) {
-      res.render('pages/elementos');
   });
 
 };
